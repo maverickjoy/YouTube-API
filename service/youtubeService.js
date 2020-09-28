@@ -2,26 +2,33 @@
 
 const axios = require('axios');
 const querystring = require('querystring');
-const {insert, insertMany} = require('../models/video');
+const {insert, insertMany, getLastVideoTime} = require('../models/video');
 const config = require('../config.js');
 
 
 const searchVideo = async (video_title) => {
     const doc = {};
     doc.video_title = video_title;
-    _getMinedVideoData();
+    startVideoMining();
     return {video_title};
 };
 
-const startVideoMining = () => {
-
+const startVideoMining = async() => {
+    let lastVideoTime = await _getLastFetchedRecordTime();
+    _getMinedVideoData(lastVideoTime);
 };
 
-const _getLastFetchedRecordTime = () => {
-
+const _getLastFetchedRecordTime = async () => {
+    let lastVideoTime = null;
+    let lastVideoTimeObj = await getLastVideoTime();
+    console.log(lastVideoTimeObj.data);
+    if(lastVideoTimeObj && lastVideoTimeObj.data) {
+        lastVideoTime = lastVideoTimeObj.data.publishTime;
+    }
+    return lastVideoTime || config.youtube.PUBLISHED_AFTER;
 };
 
-const _getMinedVideoData = () => {
+const _getMinedVideoData = (lastVideoTime) => {
     // GET parameters
     const parameters = {
         part: config.youtube.PART,
@@ -29,7 +36,7 @@ const _getMinedVideoData = () => {
         q: config.youtube.SEARCH_QUERY,
         type: config.youtube.TYPE,
         order: config.youtube.ORDER,
-        publishedAfter: config.youtube.PUBLISHED_AFTER,
+        publishedAfter: lastVideoTime,
         maxResults: config.youtube.MAX_RESULTS
     }
     const get_request_args = querystring.stringify(parameters);
@@ -55,6 +62,7 @@ const _saveMinedVideoDetails = (response, video_title) => {
         delete obj.data.liveBroadcastContent;
         docsArray.push(obj);
     });
+    console.log(JSON.stringify(docsArray, null, 4));
     insertMany(docsArray);
 }
 

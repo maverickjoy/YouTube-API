@@ -21,11 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="248ef1f1-37ea-4739-9245-f0e95ebcb30c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cron-job.js" beforeDir="false" afterPath="$PROJECT_DIR$/cron-job.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/youtubeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/service/youtubeService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601305681431</updated>
-      <workItem from="1601305682518" duration="10595000" />
+      <workItem from="1601305682518" duration="12923000" />
     </task>
     <servers />
   </component>

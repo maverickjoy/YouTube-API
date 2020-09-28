@@ -24,8 +24,13 @@ const insertMany = (docsArray) => {
     return Videos.insertMany(docsArray);
 }
 
+const getLastVideoTime = () => {
+    return Videos.findOne().sort({'data.publishTime': -1}).limit(1).select({'data.publishTime': 1}).lean();
+};
+
 
 module.exports = {
     insert,
-    insertMany
+    insertMany,
+    getLastVideoTime
 };

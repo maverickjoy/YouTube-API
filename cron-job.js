@@ -5,7 +5,7 @@ const YouTubeService = require('./service/youtubeService');
 
 const startVideoMiningJob = () => {
     cron.schedule(config.cron_jobs.VIDEO_MINING_INTERVAL, () => {
-        YouTubeService.startVideoMining();
+        // YouTubeService.startVideoMining();
     });
 }
 
