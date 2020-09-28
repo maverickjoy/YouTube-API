@@ -1,9 +1,11 @@
 'use strict';
-var cron = require('node-cron');
+const cron = require('node-cron');
+const config = require('./config.js');
+const YouTubeService = require('./service/youtubeService');
 
 const startVideoMiningJob = () => {
-    cron.schedule('* * * * * *', () => {
-        console.log('running a task1 every sec');
+    cron.schedule(config.cron_jobs.VIDEO_MINING_INTERVAL, () => {
+        YouTubeService.startVideoMining();
     });
 }
 
