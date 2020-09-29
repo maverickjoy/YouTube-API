@@ -2,15 +2,15 @@
 
 const axios = require('axios');
 const querystring = require('querystring');
-const {insert, insertMany, getLastVideoTime} = require('../models/video');
+const {smartSearchVideo, insertMany, getLastVideoTime} = require('../models/video');
 const config = require('../config.js');
 
 
 const searchVideo = async (video_title) => {
-    const doc = {};
-    doc.video_title = video_title;
-    startVideoMining();
-    return {video_title};
+    let result = await smartSearchVideo(video_title);
+    console.log("Result for video title: ", video_title,
+        " is : ", JSON.stringify(result, null, 4));
+    return result;
 };
 
 const startVideoMining = async() => {
@@ -62,7 +62,7 @@ const _saveMinedVideoDetails = (response, video_title) => {
         delete obj.data.liveBroadcastContent;
         docsArray.push(obj);
     });
-    console.log(JSON.stringify(docsArray, null, 4));
+    console.log("Saving Video Data: ", JSON.stringify(docsArray, null, 4));
     insertMany(docsArray);
 }
 

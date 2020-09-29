@@ -28,9 +28,18 @@ const getLastVideoTime = () => {
     return Videos.findOne().sort({'data.publishTime': -1}).limit(1).select({'data.publishTime': 1}).lean();
 };
 
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+const smartSearchVideo = (video_title) => {
+    const regex = new RegExp(escapeRegex(video_title), 'gi');
+    return Videos.find({'data.title': regex}).lean();
+};
 
 module.exports = {
     insert,
+    smartSearchVideo,
     insertMany,
     getLastVideoTime
 };

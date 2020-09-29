@@ -13,7 +13,7 @@ const config = {
         MAX_RESULTS: 50
     },
     cron_jobs: {
-        VIDEO_MINING_INTERVAL: '* * * * *'
+        VIDEO_MINING_INTERVAL: '*/10 * * * *' // every 10 minutes
     },
     db_credentials: {
         MONGO_URI: "mongodb+srv://vikram:bP6QOWALF98aWS3B@cluster0.j7xi5.mongodb.net/youtube_archive?retryWrites=true&w=majority"
